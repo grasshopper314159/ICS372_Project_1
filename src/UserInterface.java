@@ -26,6 +26,8 @@ import java.io.*;
  * The commands are encoded as integers using a number of
  * static final variables. A number of utility methods exist to
  * make it easier to parse the input.
+ * 
+ * Hi, This is Nate!
  *
  */
 public class UserInterface {
