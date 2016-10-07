@@ -1,8 +1,8 @@
 /**
- * 
+ *
  * @author Brahma Dathan and Sarnath Ramnath
  * @Copyright (c) 2010
- 
+
  * Redistribution and use with or without
  * modification, are permitted provided that the following conditions
  * are met:
@@ -15,19 +15,19 @@
  *     from this software without specific prior written permission.
  *
  * The authors do not make any claims regarding the correctness of the code in this module
- * and are not responsible for any loss or damage resulting from its use.  
+ * and are not responsible for any loss or damage resulting from its use.
  */
 import java.util.*;
 import java.text.*;
 import java.io.*;
 /**
- * 
+ *
  * This class implements the user interface for the Library project.
  * The commands are encoded as integers using a number of
  * static final variables. A number of utility methods exist to
  * make it easier to parse the input.
- * 
- * Hi, This is Nate!
+ *
+ * Hi, This is Nate!  Big changes here!
  *
  */
 public class UserInterface {
@@ -62,7 +62,7 @@ public class UserInterface {
   }
   /**
    * Supports the singleton pattern
-   * 
+   *
    * @return the singleton object
    */
   public static UserInterface instance() {
@@ -74,10 +74,10 @@ public class UserInterface {
   }
   /**
    * Gets a token after prompting
-   * 
+   *
    * @param prompt - whatever the user wants as prompt
    * @return - the token from the keyboard
-   * 
+   *
    */
   public String getToken(String prompt) {
     do {
@@ -95,10 +95,10 @@ public class UserInterface {
   }
   /**
    * Queries for a yes or no and returns true for yes and false for no
-   * 
+   *
    * @param prompt The string to be prepended to the yes/no prompt
    * @return true for yes and false for no
-   * 
+   *
    */
   private boolean yesOrNo(String prompt) {
     String more = getToken(prompt + " (Y|y)[es] or anything else for no");
@@ -111,7 +111,7 @@ public class UserInterface {
    * Converts the string to a number
    * @param prompt the string for prompting
    * @return the integer corresponding to the string
-   * 
+   *
    */
   public int getNumber(String prompt) {
     do {
@@ -144,9 +144,9 @@ public class UserInterface {
   }
   /**
    * Prompts for a command from the keyboard
-   * 
+   *
    * @return a valid command
-   * 
+   *
    */
   public int getCommand() {
     do {
@@ -162,7 +162,7 @@ public class UserInterface {
   }
   /**
    * Displays the help screen
-   * 
+   *
    */
   public void help() {
     System.out.println("Enter a number between 0 and 12 as explained below:");
@@ -185,7 +185,7 @@ public class UserInterface {
    * Method to be called for adding a member.
    * Prompts the user for the appropriate values and
    * uses the appropriate Library method for adding the member.
-   *  
+   *
    */
   public void addMember() {
     String name = getToken("Enter member name");
@@ -202,7 +202,7 @@ public class UserInterface {
    * Method to be called for adding a book.
    * Prompts the user for the appropriate values and
    * uses the appropriate Library method for adding the book.
-   *  
+   *
    */
   public void addBooks() {
     Book result;
@@ -225,7 +225,7 @@ public class UserInterface {
    * Method to be called for issuing books.
    * Prompts the user for the appropriate values and
    * uses the appropriate Library method for issuing books.
-   *  
+   *
    */
   public void issueBooks() {
     Book result;
@@ -251,7 +251,7 @@ public class UserInterface {
    * Method to be called for renewing books.
    * Prompts the user for the appropriate values and
    * uses the appropriate Library method for renewing books.
-   *  
+   *
    */
   public void renewBooks() {
     Book result;
@@ -277,7 +277,7 @@ public class UserInterface {
    * Method to be called for returning books.
    * Prompts the user for the appropriate values and
    * uses the appropriate Library method for returning books.
-   *  
+   *
    */
   public void returnBooks() {
     int result;
@@ -312,7 +312,7 @@ public class UserInterface {
    * Method to be called for removing books.
    * Prompts the user for the appropriate values and
    * uses the appropriate Library method for removing books.
-   *  
+   *
    */
   public void removeBooks() {
     int result;
@@ -347,7 +347,7 @@ public class UserInterface {
    * Method to be called for placing a hold.
    * Prompts the user for the appropriate values and
    * uses the appropriate Library method for placing a hold.
-   *  
+   *
    */
   public void placeHold() {
     String memberID = getToken("Enter member id");
@@ -375,7 +375,7 @@ public class UserInterface {
    * Method to be called for removing a holds.
    * Prompts the user for the appropriate values and
    * uses the appropriate Library method for removing a hold.
-   *  
+   *
    */
   public void removeHold() {
     String memberID = getToken("Enter member id");
@@ -399,7 +399,7 @@ public class UserInterface {
    * Method to be called for processing books.
    * Prompts the user for the appropriate values and
    * uses the appropriate Library method for processing books.
-   *  
+   *
    */
   public void processHolds() {
     Member result;
@@ -420,7 +420,7 @@ public class UserInterface {
    * Method to be called for displaying transactions.
    * Prompts the user for the appropriate values and
    * uses the appropriate Library method for displaying transactions.
-   *  
+   *
    */
   public void getTransactions() {
     Iterator result;
@@ -440,7 +440,7 @@ public class UserInterface {
   /**
    * Method to be called for saving the Library object.
    * Uses the appropriate Library method for saving.
-   *  
+   *
    */
   private void save() {
     if (library.save()) {
@@ -452,7 +452,7 @@ public class UserInterface {
   /**
    * Method to be called for retrieving saved data.
    * Uses the appropriate Library method for retrieval.
-   *  
+   *
    */
   private void retrieve() {
     try {
@@ -471,7 +471,7 @@ public class UserInterface {
   /**
    * Orchestrates the whole process.
    * Calls the appropriate method for the different functionalties.
-   *  
+   *
    */
   public void process() {
     int command;
