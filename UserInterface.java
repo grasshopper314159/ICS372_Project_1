@@ -368,12 +368,13 @@ public class UserInterface {
 	 *
 	 */
 	public void placeHold() {
-		int i = 1;
-		// ***********************************************
+
 		// New code here:
 		String memberID = sequenceMemberList();
+		// sequenceNotCheckedOutList();
+		String bookID = sequenceCheckedOutList();
 
-		String bookID = getToken("Enter book id");
+		// String bookID = getToken("Enter book id");
 		int duration = getNumber("Enter duration of hold");
 		int result = library.placeHold(memberID, bookID, duration);
 		switch (result) {
@@ -563,9 +564,52 @@ public class UserInterface {
 		String sequenceNumber = getToken("Enter Sequence Number: ");
 
 		String memberID = library.getMemberId(Integer.parseInt(sequenceNumber));
-		System.out.println("member ID = " + memberID);
+		// System.out.println("member ID = " + memberID);
 
 		return memberID;
+	}
+
+	public String sequenceCheckedOutList() {
+		int i = 1;
+		// ***********************************************
+		// New code here:
+		Iterator books = Catalog.instance().serveIterator();
+		for (; books.hasNext();) {
+			Book localBook = ((Book) books.next());
+
+			if (localBook.getBorrower() != null) {
+
+				System.out.println("   " + i++ + ".   " + localBook.toString());
+			}
+		}
+		// *************************************************
+		String sequenceNumber = getToken("Enter Sequence Number: ");
+
+		String bookID = Catalog.getBookId(Integer.parseInt(sequenceNumber));
+
+		return bookID;
+
+	}
+
+	public String sequenceNotCheckedOutList() {
+		int i = 1;
+		// ***********************************************
+		// New code here:
+		Iterator books = Catalog.instance().serveIterator();
+		for (; books.hasNext();) {
+			Book localBook = ((Book) books.next());
+
+			if (localBook.getBorrower() == null) {
+
+				System.out.println("   " + i++ + ".   " + localBook.toString());
+			}
+		}
+		// *************************************************
+		String sequenceNumber = getToken("Enter Sequence Number: ");
+
+		String bookID = Catalog.getBookId(Integer.parseInt(sequenceNumber));
+
+		return bookID;
 	}
 
 	/**
