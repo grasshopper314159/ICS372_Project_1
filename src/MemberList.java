@@ -1,8 +1,8 @@
 /**
- * 
+ *
  * @author Brahma Dathan and Sarnath Ramnath
  * @Copyright (c) 2010
- 
+
  * Redistribution and use with or without
  * modification, are permitted provided that the following conditions
  * are met:
@@ -15,7 +15,7 @@
  *     from this software without specific prior written permission.
  *
  * The authors do not make any claims regarding the correctness of the code in this module
- * and are not responsible for any loss or damage resulting from its use.  
+ * and are not responsible for any loss or damage resulting from its use.
  */
 import java.util.*;
 import java.io.*;
@@ -30,13 +30,13 @@ public class MemberList implements Serializable {
   private static MemberList memberList;
   /*
    * Private constructor for singleton pattern
-   * 
+   *
    */
   private MemberList() {
   }
   /**
    * Supports the singleton pattern
-   * 
+   *
    * @return the singleton object
    */
   public static MemberList instance() {
@@ -50,7 +50,7 @@ public class MemberList implements Serializable {
    * Checks whether a member with a given member id exists.
    * @param memberId the id of the member
    * @return true iff member exists
-   * 
+   *
    */
   public Member search(String memberId) {
     for (Iterator iterator = members.iterator(); iterator.hasNext(); ) {
@@ -61,6 +61,17 @@ public class MemberList implements Serializable {
     }
     return null;
   }
+
+  //***********************************************
+  //New code here:
+  public Iterator<Member> getIterator() {
+	  Iterator<Member>  iterator= members.iterator();
+	    return iterator;
+	      }
+//**********************************************************88
+
+
+
   /**
    * Inserts a member into the collection
    * @param member the member to be inserted
@@ -105,7 +116,7 @@ public class MemberList implements Serializable {
     }
   }
   /** String form of the collection
-  * 
+  *
   */
   @Override
   public String toString() {

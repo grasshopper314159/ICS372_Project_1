@@ -27,8 +27,6 @@ import java.io.*;
  * static final variables. A number of utility methods exist to
  * make it easier to parse the input.
  *
- * Hi, This is Nate!  Big changes here!
- *
  */
 public class UserInterface {
   private static UserInterface userInterface;
@@ -229,7 +227,17 @@ public class UserInterface {
    */
   public void issueBooks() {
     Book result;
-    String memberID = getToken("Enter member id");
+    int i = 1;
+    //***********************************************
+    //New code here:
+	//Iterator members = Library.instance().serveIterator();
+	for(Iterator members = Library.instance().serveIterator(); members.hasNext();) {
+			
+		System.out.println("   " + i++ + ".   " + members.next().toString());
+		
+	}
+	//*************************************************
+    String memberID = getToken("Enter Member ID: ");
     if (library.searchMembership(memberID) == null) {
       System.out.println("No such member");
       return;

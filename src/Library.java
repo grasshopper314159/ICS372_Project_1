@@ -1,8 +1,8 @@
 /**
- * 
+ *
  * @author Brahma Dathan and Sarnath Ramnath
  * @Copyright (c) 2010
- 
+
  * Redistribution and use with or without
  * modification, are permitted provided that the following conditions
  * are met:
@@ -15,7 +15,7 @@
  *     from this software without specific prior written permission.
  *
  * The authors do not make any claims regarding the correctness of the code in this module
- * and are not responsible for any loss or damage resulting from its use.  
+ * and are not responsible for any loss or damage resulting from its use.
  */
 import java.util.*;
 import java.io.*;
@@ -43,7 +43,7 @@ public class Library implements Serializable {
   }
   /**
    * Supports the singleton pattern
-   * 
+   *
    * @return the singleton object
    */
   public static Library instance() {
@@ -136,7 +136,7 @@ public class Library implements Serializable {
    * Removes a hold for a specific book and member combincation
    * @param memberId id of the member
    * @param bookId book id
-   * @return result of the operation 
+   * @return result of the operation
    */
   public int removeHold(String memberId, String bookId) {
     Member member = memberList.search(memberId);
@@ -177,6 +177,7 @@ public class Library implements Serializable {
     if (book.getBorrower() != null) {
       return(null);
     }
+
     Member member = memberList.search(memberId);
     if (member == null) {
       return(null);
@@ -341,10 +342,20 @@ public class Library implements Serializable {
     }
   }
   /** String form of the library
-  * 
+  *
   */
   @Override
   public String toString() {
     return catalog + "\n" + memberList;
   }
+
+  //***********************************************
+  //New code here:
+  
+  public Iterator<Member> serveIterator() {
+	  //return new Iterator memberList.iterator();
+	  Iterator members = MemberList.instance().getIterator();
+	  return members;
+  }
+  //************************************************************
 }
