@@ -362,11 +362,11 @@ public class Library implements Serializable {
 	  int i = 0;
 	  Iterator<Member> members = MemberList.instance().getIterator();
 	  Member m = null;
-	  System.out.println("Sequence #: " + sequenceNumber);
+	  //System.out.println("Sequence #: " + sequenceNumber);
 	  while (members.hasNext()) {
 		  i++;
 		  m = members.next();
-		  System.out.println("i #: " + i +"  m.getID: " + m.getId());
+		  //System.out.println("i #: " + i +"  m.getID: " + m.getId());
 		  
 		  if (i == sequenceNumber )
 			  
