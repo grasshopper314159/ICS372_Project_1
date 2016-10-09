@@ -230,18 +230,26 @@ public class UserInterface {
     int i = 1;
     //***********************************************
     //New code here:
-	//Iterator members = Library.instance().serveIterator();
-	for(Iterator members = Library.instance().serveIterator(); members.hasNext();) {
+	Iterator members = Library.instance().serveIterator();
+	for(; members.hasNext();) {
 			
 		System.out.println("   " + i++ + ".   " + members.next().toString());
 		
 	}
 	//*************************************************
-    String memberID = getToken("Enter Member ID: ");
+    String sequenceNumber = getToken("Enter Sequence Number: ");
+    
+    /*
     if (library.searchMembership(memberID) == null) {
       System.out.println("No such member");
       return;
     }
+    */
+    String memberID = library.getMemberId(Integer.parseInt(sequenceNumber));
+    System.out.println("member ID = " + memberID);
+
+    
+    
     do {
       String bookID = getToken("Enter book id");
       result = library.issueBook(memberID, bookID);
