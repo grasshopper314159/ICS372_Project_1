@@ -252,7 +252,9 @@ public class UserInterface {
 		Book result;
 		String memberID = sequenceMemberList();
 		do {
-			String bookID = getToken("Enter book id");
+			// String bookID = sequenceAllBooksList();
+			String bookID = sequenceNotCheckedOutList();
+			// String bookID = getToken("Enter book id");
 			result = library.issueBook(memberID, bookID);
 			if (result != null) {
 				System.out.println(result.getTitle() + "   " + result.getDueDate());
@@ -298,7 +300,8 @@ public class UserInterface {
 	public void returnBooks() {
 		int result;
 		do {
-			String bookID = getToken("Enter book id");
+			// String bookID = getToken("Enter book id");
+			String bookID = sequenceAllBooksList();
 			result = library.returnBook(bookID);
 			switch (result) {
 			case Library.BOOK_NOT_FOUND:
@@ -372,7 +375,7 @@ public class UserInterface {
 		// New code here:
 		String memberID = sequenceMemberList();
 		// sequenceNotCheckedOutList();
-		String bookID = sequenceCheckedOutList();
+		String bookID = sequenceAllBooksList();
 
 		// String bookID = getToken("Enter book id");
 		int duration = getNumber("Enter duration of hold");
@@ -403,7 +406,10 @@ public class UserInterface {
 	 */
 	public void removeHold() {
 		String memberID = sequenceMemberList();
-		String bookID = getToken("Enter book id");
+		String bookID = sequenceAllBooksList();
+		// String bookID = sequenceHasHoldList();
+		// String bookID = getToken("Enter book id");
+		System.out.println(memberID + bookID);
 		int result = library.removeHold(memberID, bookID);
 		switch (result) {
 		case Library.BOOK_NOT_FOUND:
@@ -429,7 +435,8 @@ public class UserInterface {
 	public void processHolds() {
 		Member result;
 		do {
-			String bookID = getToken("Enter book id");
+			// String bookID = getToken("Enter book id");
+			String bookID = sequenceAllBooksList();
 			result = library.processHold(bookID);
 			if (result != null) {
 				System.out.println(result);
@@ -597,11 +604,11 @@ public class UserInterface {
 		// New code here:
 		Iterator books = Catalog.instance().serveIterator();
 		for (; books.hasNext();) {
-			Book localBook = ((Book) books.next());
+			// Book localBook = ((Book) books.next());
 
-			if (localBook.getBorrower() == null) {
+			if (((Book) books.next()).getBorrower() == null) {
 
-				System.out.println("   " + i++ + ".   " + localBook.toString());
+				System.out.println("   " + i++ + ".   " + ((Book) books.next()).toString());
 			}
 		}
 		// *************************************************
@@ -609,6 +616,44 @@ public class UserInterface {
 
 		String bookID = Catalog.getBookId(Integer.parseInt(sequenceNumber));
 
+		return bookID;
+	}
+
+	public String sequenceHasHoldList() {
+		int i = 1;
+		// ***********************************************
+		// New code here:
+		Iterator books = Catalog.instance().serveIterator();
+		for (; books.hasNext();) {
+			Book localBook = ((Book) books.next());
+			if (localBook.hasHold() != false) {
+				System.out.println("   " + i++ + ".   " + localBook.toString());
+			}
+
+		}
+		// *************************************************
+		String sequenceNumber = getToken("Enter Sequence Number: ");
+
+		String bookID = Catalog.getBookId(Integer.parseInt(sequenceNumber));
+		System.out.println("book ID = " + bookID);
+		return bookID;
+	}
+
+	public String sequenceAllBooksList() {
+		int i = 1;
+		// ***********************************************
+		// New code here:
+		Iterator books = Catalog.instance().serveIterator();
+		for (; books.hasNext();) {
+
+			System.out.println("   " + i++ + ".   " + books.next().toString());
+		}
+
+		// *************************************************
+		String sequenceNumber = getToken("Enter Sequence Number: ");
+
+		String bookID = Catalog.getBookId(Integer.parseInt(sequenceNumber));
+		System.out.println("book ID = " + bookID);
 		return bookID;
 	}
 
