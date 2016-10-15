@@ -374,8 +374,8 @@ public class UserInterface {
 
 		// New code here:
 		String memberID = sequenceMemberList();
-		// sequenceNotCheckedOutList();
-		String bookID = sequenceAllBooksList();
+		String bookID = sequenceCheckedOutList();
+		// String bookID = sequenceAllBooksList();
 
 		// String bookID = getToken("Enter book id");
 		int duration = getNumber("Enter duration of hold");
@@ -580,19 +580,17 @@ public class UserInterface {
 		int i = 1;
 		// ***********************************************
 		// New code here:
-		Iterator books = Catalog.instance().serveIterator();
+		Iterator books = Catalog.instance().holdableList();
 		for (; books.hasNext();) {
 			Book localBook = ((Book) books.next());
 
-			if (localBook.getBorrower() != null) {
-
-				System.out.println("   " + i++ + ".   " + localBook.toString());
-			}
+			System.out.println("   " + i++ + ".   " + localBook.toString());
 		}
+
 		// *************************************************
 		String sequenceNumber = getToken("Enter Sequence Number: ");
 
-		String bookID = Catalog.getBookId(Integer.parseInt(sequenceNumber));
+		String bookID = Catalog.getBookId(Integer.parseInt(sequenceNumber), Catalog.instance().holdableList());
 
 		return bookID;
 

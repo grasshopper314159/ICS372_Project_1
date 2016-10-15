@@ -163,6 +163,27 @@ public class Catalog implements Serializable {
 		return books;
 	}
 
+	public Iterator serveHoldIterator() {
+		// return new Iterator memberList.iterator();
+
+		Iterator<Book> books = holdableList();
+		return books;
+	}
+
+	public Iterator holdableList() {
+		List checkedOut = new LinkedList();
+
+		for (Iterator iterator = books.iterator(); iterator.hasNext();) {
+			Book book = (Book) iterator.next();
+			if (book.getBorrower() != null) {
+				checkedOut.add(book);
+			}
+
+		}
+		// TODO Auto-generated method stub
+		return checkedOut.iterator();
+	}
+
 	private Iterator getIterator() {
 		// TODO Auto-generated method stub
 		Iterator<Book> iterator = books.iterator();
@@ -177,6 +198,24 @@ public class Catalog implements Serializable {
 		while (books.hasNext()) {
 			i++;
 			b = books.next();
+			// System.out.println("i #: " + i +" m.getID: " + m.getId());
+
+			if (i == sequenceNumber)
+
+				return b.getId();
+		}
+		return null;
+
+	}
+
+	public static String getBookId(int sequenceNumber, Iterator iterator) {
+		int i = 0;
+		// Iterator<Book> books = Catalog.instance().getIterator();
+		Book b = null;
+		// System.out.println("Sequence #: " + sequenceNumber);
+		while (iterator.hasNext()) {
+			i++;
+			b = (Book) iterator.next();
 			// System.out.println("i #: " + i +" m.getID: " + m.getId());
 
 			if (i == sequenceNumber)
